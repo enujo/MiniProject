@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.tistory.luahius.dto.Staff;
 
-public class StaffAddDao {
+public class StaffAddDao2 {
 	
 	public int stafAdd(Staff staff){
 		int re = 0;
@@ -36,27 +36,15 @@ public class StaffAddDao {
 			statement.setInt(5, staff.getReligion().getNo());
 			statement.executeUpdate();
 			resultset = statement.getGeneratedKeys();
-			ResultSetMetaData rsmd = resultset.getMetaData();
-			int count = rsmd.getColumnCount();
-			String key =null;
-			if(resultset.next()){
-				do{
-					for(int i=1; i<=count; i++){
-						key = resultset.getString(i);
-						System.out.println("key"+i+"="+key);
-					}
-				}while(resultset.next());
-			}else{
-				System.out.println("No keys were generated");
-			}
-			int kkey = Integer.getInteger(key);
+			String autoinsertedKey = (resultset.next())?resultset.getString(1) : null;
+			
 			/*for(int i =0; i<list.)*/
 			stmt = connection.prepareStatement("INSERT INTO staffskill values(staffskill_seq.nextval,?,?)");
-			stmt.setInt(1, kkey);
+			stmt.setString(1, autoinsertedKey);
 			stmt.setInt(2, 3);
 			stmt.executeUpdate();
 
-			System.out.println(key+" ·ê·ç¶ö¶ó rs ¹ÝÈ¯µÇ´Â °ª");
+			System.out.println(autoinsertedKey+" ·ê·ç¶ö¶ó rs ¹ÝÈ¯µÇ´Â °ª");
 					
 		} catch (SQLException e) {
 			e.printStackTrace();

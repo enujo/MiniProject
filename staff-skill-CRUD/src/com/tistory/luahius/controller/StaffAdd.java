@@ -1,5 +1,7 @@
 package com.tistory.luahius.controller;
 
+import java.util.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +21,7 @@ public class StaffAdd implements Action {
 		Staff staff = new Staff();
 		Religion religion = new Religion();
 		School school = new School();
+		List list = new ArrayList();
 		
 		String NAME = request.getParameter("name");
 		String SN = (request.getParameter("frontNumber"))+"-"+(request.getParameter("backNumber"));
@@ -34,10 +37,12 @@ public class StaffAdd implements Action {
 		System.out.println("SN"+SN);
 		System.out.println("GRADUATEDAY"+GRADUATEDAY);
 		
-		for(int i =0; i<SKILLNO.length; i++){
-			
+		/*for(int i =0; i<SKILLNO.length; i++){
+			list.add(SKILLNO[i]);
 			System.out.println("SKILLNO"+SKILLNO[i]);
 		}
+		request.setAttribute("skilist", list);*/
+		
 		staff.setName(NAME);
 		staff.setSn(SN);
 		staff.setGraduateday(GRADUATEDAY);
