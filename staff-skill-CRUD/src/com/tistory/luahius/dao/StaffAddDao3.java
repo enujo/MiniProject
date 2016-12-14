@@ -5,9 +5,9 @@ import java.util.*;
 
 import com.tistory.luahius.dto.Staff;
 
-public class StaffAddDao {
+public class StaffAddDao3 {
 	
-	public int stafAdd(Staff staff, String[] skill){
+	public int stafAdd(Staff staff, List list){
 		int re = 0;
 		String sql = "INSERT INTO STAFF VALUES(staff_seq.nextval,?,?, TO_DATE(?, 'YYYY-MM-DD'),?,?)";
 		Connection connection = null;
@@ -15,14 +15,12 @@ public class StaffAddDao {
 		PreparedStatement skillstatement = null;
 		ResultSet resultset = null;
 		String[] keyCol = {"no"};
-		
+		System.out.println("StafAddDao.java list : "+list);
 		System.out.println(staff.getName());
 		System.out.println(staff.getSn());
 		System.out.println(staff.getGraduateday());
 		System.out.println(staff.getSchool().getNo());
 		System.out.println(staff.getReligion().getNo());
-		System.out.println("StafAddDao.java skill : "+skill);
-		
 		connection = DBUtill.getConncetion();
 		
 		try {
@@ -37,14 +35,17 @@ public class StaffAddDao {
 			
 			if(resultset.next()){
 				System.out.println("StaffAddDao.java Key : "+resultset.getInt(1));
-			}			
+			}
 			
-		for(int i=0; i<skill.length; i++){	
-			skillstatement = connection.prepareStatement("INSERT INTO staffskill VALUES(staffskill_seq.nextval,?,?)");
+			
+		for(int i=0; i<list.size(); i++){	
+			skillstatement = connection.prepareStatement("INSERT INTO staffskill"
+					+ "VALUES(staffskill_seq.nextval,?,?)");
 			skillstatement.setInt(1, resultset.getInt(1));
-			skillstatement.setInt(2, Integer.parseInt(skill[i]));
+			skillstatement.setInt(2, (int) list.get(i));
 			skillstatement.executeUpdate();	
 		}
+
 								
 		} catch (SQLException e) {
 			e.printStackTrace();

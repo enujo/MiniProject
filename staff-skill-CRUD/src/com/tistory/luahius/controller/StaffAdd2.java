@@ -12,7 +12,7 @@ import com.tistory.luahius.dto.Religion;
 import com.tistory.luahius.dto.School;
 import com.tistory.luahius.dto.Staff;
 
-public class StaffAdd implements Action {
+public class StaffAdd2 implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,6 +21,7 @@ public class StaffAdd implements Action {
 		Staff staff = new Staff();
 		Religion religion = new Religion();
 		School school = new School();
+		List list = new ArrayList();
 		
 		String NAME = request.getParameter("name");
 		String SN = (request.getParameter("frontNumber"))+"-"+(request.getParameter("backNumber"));
@@ -28,6 +29,8 @@ public class StaffAdd implements Action {
 		String[] SKILLNO = request.getParameterValues("chB");		
 		int SCHOOLNO = Integer.parseInt(request.getParameter("schoolNo"));
 		int RELIGIONNO = Integer.parseInt(request.getParameter("religion"));
+		
+		
 		
 		System.out.println("name"+NAME);
 		System.out.println("religion"+RELIGIONNO);		
@@ -43,10 +46,13 @@ public class StaffAdd implements Action {
 		staff.setSchool(school);
 
 		for(int i=0; i<SKILLNO.length; i++){
+			list.add(SKILLNO[i]);
 			System.out.println("SKILLNO : "+SKILLNO[i]);
 		}
+		System.out.println("list : "+list);
 		
-		dao.stafAdd(staff, SKILLNO);
+		dao.stafAdd(staff, list);
+		
 				
 		forward.setRedirect(false);
     	forward.setPath("/WEB-INF/jsp/add/StaffAdd.jsp");   	

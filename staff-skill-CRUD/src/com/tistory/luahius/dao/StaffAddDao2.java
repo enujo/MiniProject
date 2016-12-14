@@ -14,7 +14,6 @@ public class StaffAddDao2 {
 		String sql = "INSERT INTO STAFF VALUES(staff_seq.nextval,?,?, TO_DATE(?, 'YYYY-MM-DD'),?,?)";
 		Connection connection = null;
 		PreparedStatement statement = null;
-		PreparedStatement stmt = null;
 		ResultSet resultset = null;
 		
 		System.out.println(staff.getName());
@@ -23,10 +22,7 @@ public class StaffAddDao2 {
 		System.out.println(staff.getSchool().getNo());
 		System.out.println(staff.getReligion().getNo());
 		connection = DBUtill.getConncetion();
-		
-		
-		
-		
+				
 		try {
 			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, staff.getName());
@@ -36,15 +32,11 @@ public class StaffAddDao2 {
 			statement.setInt(5, staff.getReligion().getNo());
 			statement.executeUpdate();
 			resultset = statement.getGeneratedKeys();
-			String autoinsertedKey = (resultset.next())?resultset.getString(1) : null;
 			
-			/*for(int i =0; i<list.)*/
-			stmt = connection.prepareStatement("INSERT INTO staffskill values(staffskill_seq.nextval,?,?)");
-			stmt.setString(1, autoinsertedKey);
-			stmt.setInt(2, 3);
-			stmt.executeUpdate();
-
-			System.out.println(autoinsertedKey+" ·ê·ç¶ö¶ó rs ¹ÝÈ¯µÇ´Â °ª");
+			if(resultset.next()){
+				System.out.println("zzzzzzzzzzz"+resultset.getInt(1));
+			}
+			
 					
 		} catch (SQLException e) {
 			e.printStackTrace();
