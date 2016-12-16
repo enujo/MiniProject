@@ -38,8 +38,21 @@ public class StaffFrontController extends HttpServlet implements Servlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}			
+		}else if(command.equals("/staff/StaffChoose.jh")){
+			action = new StaffChoose();
+			try{
+				forward = action.execute(request, response);
+			}catch (Exception e){
+				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/staff/StaffList.jh")){
+			action = new StaffList();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		

@@ -29,11 +29,38 @@
 						</div>
 					</td>
 					<td width="30" align="center">
-						<a href="<c:url value='/staff/AddView.jh' />">이동</a>
-					
-					</td>
-					
+						<a href="<c:url value='/staff/AddView.jh' />">이동</a>					
+					</td>					
 				</tr>
+				
+				<tr height="30">
+					<td width="30" align="center">1</td>
+					<td>
+						<div>
+							<a href="<c:url value='/staff/StaffChoose.jh' />">
+								/staff/ChooseStaff.jh
+							</a>
+						</div>
+					</td>
+					<td width="30" align="center">
+						<a href="<c:url value='/staff/StaffChoose.jh' />">이동</a>					
+					</td>					
+				</tr>
+				
+					<tr height="30">
+					<td width="30" align="center">1</td>
+					<td>
+						<div>
+							<a href="<c:url value='/staff/StaffList.jh' />">
+								/staff/StaffList.jh
+							</a>
+						</div>
+					</td>
+					<td width="30" align="center">
+						<a href="<c:url value='/staff/StaffList.jh' />">이동</a>					
+					</td>					
+				</tr>
+				
 			</tbody>
 		
 		</table>
