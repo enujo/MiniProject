@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import member.action.ActionForward;
 import member.action.MemberAction;
+import member.action.MemberDetail;
 import member.action.MemberJoinPro;
 import member.action.MemberListPro;
 import member.action.MemberLoginPro;
@@ -36,7 +37,12 @@ public class MemberController extends HttpServlet {
     	ActionForward forward = null;
 		MemberAction action = null;
 		
-		if(command.equals("/MemberJoinForm.me")){
+		if(command.equals("/KsmartLibrary.me")){
+			System.out.println("IF - KsmartLibrary.me");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/index.jsp");
+		}else if(command.equals("/MemberJoinForm.me")){
 			System.out.println("IF - MemberJoinForm.me");
 			forward = new ActionForward();
 			forward.setRedirect(false);
@@ -89,9 +95,15 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberDetail.me")){
+			System.out.println("IF - MemberDetail.me");
+			action = new MemberDetail();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}	
 		}
-    	
-		
 		
 		if(forward != null){
 			if(forward.isRedirect()){

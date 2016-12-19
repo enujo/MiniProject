@@ -11,10 +11,9 @@ public class MemberLogoutPro implements MemberAction {
 		HttpSession session = request.getSession();
         session.invalidate();
 
-
         ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/MemberList.me");
+        forward.setRedirect(true);
+		forward.setPath(request.getContextPath()+"/KsmartLibrary.me");
 		
 		return forward;
 	}

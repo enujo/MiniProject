@@ -31,6 +31,37 @@ public class MemberDAO {
 			return;
 		}
 	}
+	//회원 상세 정보
+	public Member mDetail(String mID){
+		System.out.println("--MemberDAO - mDetail");
+		System.out.println("--MemberDAO - mDetail mID : " +mID);
+		try {
+			conn=ds.getConnection();
+			pstmt = conn.prepareStatement(
+					"SELECT * FROM member WHERE member_id=?");
+			pstmt.setString(1, mID);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				m =new Member();
+				m.setMember_id(rs.getString("member_id"));
+				m.setMember_pw(rs.getString("member_pw"));
+				m.setMember_name(rs.getString("member_name"));
+				m.setMember_level(rs.getString("member_level"));
+				m.setMember_phone(rs.getString("member_phone"));
+				m.setMember_addr(rs.getString("member_addr"));
+				m.setMember_date(rs.getString("member_date"));
+				m.setMember_img(rs.getString("member_img"));
+			}				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			this.close(conn, pstmt, rs);
+		}		
+		System.out.println("DAO mUpdate m : "+m);
+		return m;		
+	}
+	
 	//회원 정보 수정
 	public int mUpdatePro(Member m){
 		System.out.println("--MemberDAO - mUpdatePro");
@@ -180,11 +211,22 @@ public class MemberDAO {
         pstmt.setString(1,userId);
         pstmt.setString(2,userPw);
         rs = pstmt.executeQuery();
-        if(rs.next()){
+        if(rs.next()){        	
+        	
         	m.setMember_id(rs.getString("member_id"));
+        	m.setMember_name(rs.getString("member_name"));
+        	m.setMember_level(rs.getString("member_level"));
         	m.setMember_pw(rs.getString("member_pw"));
         	m.setMember_img(rs.getString("member_img"));
+        	
+        	/*System.out.println("MemberDAO loginSession member_id "+rs.getString("member_id"));
+        	System.out.println("MemberDAO loginSession member_name "+rs.getString("member_name"));
+        	System.out.println("MemberDAO loginSession member_level "+rs.getString("member_level"));
+        	System.out.println("MemberDAO loginSession member_pw "+rs.getString("member_pw"));
+        	System.out.println("MemberDAO loginSession member_img "+rs.getString("member_img"));*/
         }
+        
+        System.out.println("--MemberDAO - loginSession end\br");
 
 		return m;
 	}

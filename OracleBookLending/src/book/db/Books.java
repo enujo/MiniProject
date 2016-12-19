@@ -66,5 +66,11 @@ public class Books {
 	public void setBooks_img(String books_img) {
 		this.books_img = books_img;
 	}
+	@Override
+	public String toString() {
+		return "Books [books_no=" + books_no + ", books_name=" + books_name + ", books_writer=" + books_writer
+				+ ", books_date=" + books_date + ", books_cate=" + books_cate + ", books_count=" + books_count
+				+ ", books_state=" + books_state + ", books_publi=" + books_publi + ", books_img=" + books_img + "]";
+	}
 	
 }

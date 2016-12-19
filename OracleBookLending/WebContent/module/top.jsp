@@ -6,12 +6,13 @@
 <%request.setCharacterEncoding("EUC-KR");%>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>KSMART LIbrary</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/main.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/main.css' />" />
+
 <body class="w3-light-grey">
 
 <!-- Top container -->
