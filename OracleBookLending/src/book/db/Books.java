@@ -5,7 +5,7 @@ public class Books {
 	private String books_name;
 	private String books_writer;
 	private String books_date;
-	private String books_cate;
+	private Category category;
 	private int books_count;
 	private String books_state;
 	private String books_publi;
@@ -41,11 +41,11 @@ public class Books {
 	public void setBooks_date(String books_date) {
 		this.books_date = books_date;
 	}
-	public String getBooks_cate() {
-		return books_cate;
+	public Category getCategory() {
+		return category;
 	}
-	public void setBooks_cate(String books_cate) {
-		this.books_cate = books_cate;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	public int getBooks_count() {
 		return books_count;
@@ -65,12 +65,6 @@ public class Books {
 	}
 	public void setBooks_img(String books_img) {
 		this.books_img = books_img;
-	}
-	@Override
-	public String toString() {
-		return "Books [books_no=" + books_no + ", books_name=" + books_name + ", books_writer=" + books_writer
-				+ ", books_date=" + books_date + ", books_cate=" + books_cate + ", books_count=" + books_count
-				+ ", books_state=" + books_state + ", books_publi=" + books_publi + ", books_img=" + books_img + "]";
 	}
 	
 }

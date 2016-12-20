@@ -41,7 +41,7 @@
     	<td><img src="<%= request.getContextPath() %>/uploadbooks/<%=b.getBooks_img().split(",")[0] %>" width="50" height="50" border="0"></td>
 		<td><%= b.getBooks_no() %></td>
 		<td><a href="<%=request.getContextPath()%>/BooksViewPro.bo?bookNo=<%=b.getBooks_no()%>"><%= b.getBooks_name() %></a></td>
-		<td><%= b.getBooks_cate() %></td>
+		<td><%= b.getCategory().getCategory_name()%></td>
 		<td><%= b.getBooks_state() %></td>
 		<td><%= b.getBooks_publi() %></td>
 	</tr>  

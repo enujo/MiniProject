@@ -10,12 +10,12 @@
 %>
 	<table class = "w3-table w3-striped w3-white">
    	<tr>
-      <td><img src="<%= request.getContextPath() %>/uploadbooks/<%=b.getBooks_img().split(",")[0] %>" width="200" height="200" border="0"></td>
+      <td><img src="<%=request.getContextPath()%>/uploadbooks/<%=b.getBooks_img().split(",")[0]%>" width="200" height="200" border="0"></td>
       <td><%=b.getBooks_no()%></td>
       <td><%=b.getBooks_name()%></td>
       <td><%=b.getBooks_writer()%></td>
       <td><%=b.getBooks_date()%></td>
-      <td><%=b.getBooks_cate()%></td>
+      <td><%=b.getCategory().getCategory_name()%></td>
       <td><%=b.getBooks_publi()%></td>
       <td><%=b.getBooks_count()%></td>
       <td><%=b.getBooks_state()%></td>
@@ -25,5 +25,9 @@
       
       </tr>
       </table>
+      <a href="<%= request.getContextPath() %>/BooksUpdateForm.bo?bookNo=<%=b.getBooks_no()%>">Update</a>
+      <a href="<%= request.getContextPath() %>/BooksDeleteForm.bo?bookNo=<%=b.getBooks_no()%>">Delete</a>  
+
+
 
 <%@ include file="/module/bottom.jsp"%>

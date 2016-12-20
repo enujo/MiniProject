@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import member.db.Member;
+
 public class BooksDAO {
 
 	DataSource ds;
@@ -30,8 +32,30 @@ public class BooksDAO {
 			return;
 		}
 	}
+	//카테고리 출력
+	public ArrayList<Category> bCategory() throws SQLException{
+		System.out.println("--BooksDAO - bView");
+		ArrayList<Category> alc = new ArrayList<Category>();
+		conn=ds.getConnection();
+		String query = "select * from category";
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		while(rs.next()){
+			Category c = new Category();
+			c.setCategory_no(rs.getInt("category_no"));
+			c.setCategory_name(rs.getString("category_name"));
+			alc.add(c);
+		}
+		
+		if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		
+		return alc;
+	}
+
 	
-	//책등록
+		//책등록
 		public int bInsert(Books b) throws SQLException, ClassNotFoundException{
 			System.out.println("--BooksDAO - bInsert");
 			conn=ds.getConnection();
@@ -41,7 +65,7 @@ public class BooksDAO {
 			pstmt.setString(1, b.getBooks_no());
 			pstmt.setString(2, b.getBooks_name());
 			pstmt.setString(3, b.getBooks_writer());
-			pstmt.setString(4, b.getBooks_cate());
+			pstmt.setInt(4, b.getCategory().getCategory_no());
 			pstmt.setString(5, b.getBooks_publi());
 			pstmt.setString(6, b.getBooks_img());
 			System.out.println(pstmt + "<-- pstmt 2");
@@ -61,7 +85,7 @@ public class BooksDAO {
 			System.out.println("--BooksDAO - bList");
 			alb = new ArrayList<Books>();
 			conn=ds.getConnection();
-			String query = "select * from books";
+			String query = "SELECT * from books, category where books.books_cate = category.category_no";
 
 		    
 		    if (select==null & value==null){
@@ -73,7 +97,7 @@ public class BooksDAO {
 		        rs = pstmt.executeQuery();
 		        
 		    }else if (select!=null&value!=null){
-		        pstmt = conn.prepareStatement(query+" where "+select+"=?");
+		        pstmt = conn.prepareStatement(query+" where book."+select+"=?");
 		        pstmt.setString(1, value);
 		        rs = pstmt.executeQuery();
 		    }
@@ -82,9 +106,13 @@ public class BooksDAO {
 				b = new Books();
 				b.setBooks_no(rs.getString("books_no"));
 				b.setBooks_name(rs.getString("books_name"));
-				b.setBooks_cate(rs.getString("books_cate"));
 				b.setBooks_publi(rs.getString("books_publi"));
 				b.setBooks_img(rs.getString("books_img"));
+				
+				Category category = new Category();
+				category.setCategory_no(rs.getInt("category_no"));
+				category.setCategory_name(rs.getString("category_name"));
+				b.setCategory(category);
 				
 				if(rs.getInt("books_state")==0){
 					b.setBooks_state("대여가능");
@@ -103,26 +131,30 @@ public class BooksDAO {
 			
 			return alb;
 		}	
-		
+		//bview
 		public Books bView(String bookNo) throws SQLException{
 			System.out.println("--BooksDAO - bView");
 			b = new Books();
 			conn=ds.getConnection();
-			String query = "select * from books where books_no=?";
+			String query ="SELECT * from books, category where books.books_cate = category.category_no and books.books_no=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bookNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
+				
+				
 				b.setBooks_no(rs.getString("books_no"));
 				b.setBooks_name(rs.getString("books_name"));
 				b.setBooks_writer(rs.getString("books_writer"));
 				b.setBooks_date(rs.getString("books_date"));
-				b.setBooks_cate(rs.getString("books_cate"));
 				b.setBooks_count(rs.getInt("books_count"));
-				
 				b.setBooks_publi(rs.getString("books_publi"));
 				b.setBooks_img(rs.getString("books_img"));
 				
+				Category category = new Category();
+				category.setCategory_no(rs.getInt("category_no"));
+				category.setCategory_name(rs.getString("category_name"));
+				b.setCategory(category);
 				if(rs.getInt("books_state")==0){
 					b.setBooks_state("대여가능");
 				}else{

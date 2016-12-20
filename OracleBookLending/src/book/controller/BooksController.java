@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import book.action.ActionForward;
 import book.action.BooksAction;
+import book.action.BooksAddForm;
 import book.action.BooksAddPro;
+import book.action.BooksDeleteForm;
 import book.action.BooksListPro;
 import book.action.BooksUpdateForm;
 import book.action.BooksViewPro;
@@ -32,10 +34,13 @@ public class BooksController extends HttpServlet {
     	BooksAction action = null;
     	
     	if(command.equals("/BooksAddForm.bo")){
-			System.out.println("IF - BooksAddForm.bo");
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/bAdd/b_add_form.jsp");
+    		System.out.println("IF - BooksAddForm.bo");
+			action = new BooksAddForm();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
     	}else if(command.equals("/BooksAddPro.bo")){
 			System.out.println("IF - BooksAddPro.bo");
 			action = new BooksAddPro();
@@ -63,6 +68,14 @@ public class BooksController extends HttpServlet {
 		}else if(command.equals("/BooksUpdateForm.bo")){
 			System.out.println("IF - BooksUpdateForm.bo");
 			action = new BooksUpdateForm();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BooksDeleteForm.bo")){
+			System.out.println("IF - BooksDeleteForm.bo");
+			action = new BooksDeleteForm();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

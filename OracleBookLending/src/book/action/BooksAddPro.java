@@ -13,6 +13,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import book.db.Books;
 import book.db.BooksDAO;
+import book.db.Category;
 
 public class BooksAddPro implements BooksAction{
 
@@ -52,10 +53,18 @@ public class BooksAddPro implements BooksAction{
 			for (int i = 0; i < savefiles.size(); i++) {
 				fl.append(savefiles.get(i));
 			}
-			b.setBooks_no(multi.getParameter("books_no"));
+			b.setBooks_no(
+							multi.getParameter("books_cate")
+							+"."
+							+multi.getParameter("books_name").substring(0, 1)
+							+multi.getParameter("books_writer").substring(0, 1)
+							+multi.getParameter("books_publi").substring(0, 1)
+						);
 			b.setBooks_name(multi.getParameter("books_name"));
 			b.setBooks_writer(multi.getParameter("books_writer"));
-			b.setBooks_cate(multi.getParameter("books_cate"));
+			Category category = new Category();
+			category.setCategory_no(Integer.parseInt(multi.getParameter("books_cate")));
+			b.setCategory(category);
 			b.setBooks_publi(multi.getParameter("books_publi"));
 			b.setBooks_img(fl.toString());
 

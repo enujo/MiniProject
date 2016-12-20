@@ -11,6 +11,7 @@ import book.db.BooksDAO;
 public class BooksListPro implements BooksAction{
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("euc-kr");
 		System.out.println("---BooksListPro---");
 		System.out.println();
 		String select = request.getParameter("select");

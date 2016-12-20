@@ -1,7 +1,5 @@
 package book.action;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +9,11 @@ import book.db.BooksDAO;
 public class BooksViewPro implements BooksAction{
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("---BooksListPro---");
+		request.setCharacterEncoding("euc-kr");
+		System.out.println("---BooksView---");
 		System.out.println();
 		String bookNo = request.getParameter("bookNo");
+		System.out.println(bookNo);
 		BooksDAO bdao = new BooksDAO();
 		Books b = bdao.bView(bookNo);
 		request.setAttribute("b", b);
