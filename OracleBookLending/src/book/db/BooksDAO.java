@@ -97,7 +97,7 @@ public class BooksDAO {
 		        rs = pstmt.executeQuery();
 		        
 		    }else if (select!=null&value!=null){
-		        pstmt = conn.prepareStatement(query+" where book."+select+"=?");
+		        pstmt = conn.prepareStatement(query+" and "+select+"=?");
 		        pstmt.setString(1, value);
 		        rs = pstmt.executeQuery();
 		    }

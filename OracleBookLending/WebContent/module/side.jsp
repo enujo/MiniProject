@@ -35,13 +35,14 @@
 
 	<hr>
 	<a href="#" class="w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a> 
-	
+		<%-- <c:if test="${userLevel eq '包府磊'}">
+			</c:if>	 --%>
 	
 	<a href="<%=request.getContextPath()%>/MemberJoinForm.me" class="w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> Join</a>
-	<c:if test="${userLevel eq '包府磊'}">
+
 		<a href="<%=request.getContextPath()%>/BooksAddForm.bo" class="w3-padding"><i class="fa fa-eye fa-fw"></i> Add</a>
 		<a href="<%=request.getContextPath()%>/MemberList.me" class="w3-padding"><i class="fa fa-eye fa-fw"></i> List</a>
-	</c:if>	
+
 	<a href="<%=request.getContextPath()%>/BooksListPro.bo" class="w3-padding"><i class="fa fa-eye fa-fw"></i> Book List</a>
 
 	<br>
