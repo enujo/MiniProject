@@ -58,7 +58,7 @@ public class MemberDAO {
 		}finally{
 			this.close(conn, pstmt, rs);
 		}		
-		System.out.println("DAO mUpdate m : "+m);
+		System.out.println("DAO mDetail m : "+m);
 		return m;		
 	}
 	

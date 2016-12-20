@@ -34,15 +34,17 @@
       </tr>
     </thead>
     <tbody>
-
+	<%-- 	<c:forEach var="getalm" items="alm">
+		${Member m = getalm.get(1)}
+		</c:forEach> --%>
 	<%
 	ArrayList<Member> getalm = (ArrayList<Member>)request.getAttribute("alm"); 
 	for(int i=0 ; i < getalm.size() ; i++){
 		Member m = getalm.get(i);
 	%>
     <tr>
-    	<td><a href="<%=request.getContextPath()%>/MemberUpdate.me?mID=<%=m.getMember_id()%>"><img src="<%= request.getContextPath() %>/upload/<%=m.getMember_img().split(",")[0] %>" width="50" height="50" border="0"></a></td>
-		<td><a href="<c:url value='/MemberUpdate.me'/>?mID=<%=m.getMember_id()%>"><%= m.getMember_id() %></a></td>
+    	<td><a href="<%=request.getContextPath()%>/MemberDetail.me?mID=<%=m.getMember_id()%>"><img src="<%= request.getContextPath() %>/upload/<%=m.getMember_img().split(",")[0] %>" width="50" height="50" border="0"></a></td>
+		<td><a href="<c:url value='/MemberDetail.me'/>?mID=<%=m.getMember_id()%>"><%= m.getMember_id() %></a></td>
 		<td><%= m.getMember_name() %></td>
 		<td><%= m.getMember_level() %></td>
 		<td><%= m.getMember_phone() %></td>
@@ -53,6 +55,7 @@
     <%
     }
     %>
+	    
     </tbody>
   </table>
 </div>

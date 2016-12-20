@@ -15,8 +15,8 @@
 		<table>
 			<tr>
 				<td  style="width:33%" rowspan="3">
-					<img src="<c:url value='/upload/${userImg.split(",")[0]}'/>" class="w3-circle w3-margin-right" style="width:100%" >
-					
+					<img src="<c:url value='/upload/${m.member_img.split(",")[0]}'/>" class="w3-circle w3-margin-right" style="width:100%" >
+					<%-- width="50" height="50" border="0"> --%>
 				</td>
 				<td>
 					<div class="form-group">			
@@ -70,7 +70,7 @@
 			<input type="text" class="form-control" id="usr" name="member_addr" readonly value="${m.member_addr }">
 		</div>
 		<div class="form-group">
-			<a href="<c:url value='/upDateForm.jsp'/>?mID=${m.member_id}">
+			<a href="<c:url value='/MemberUpdate.me'/>?mID=${m.member_id}">
 				<input type="button" value="¼öÁ¤">
 			</a>
 		</div>

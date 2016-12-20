@@ -23,7 +23,6 @@ public class MemberUpdatePro implements MemberAction {
 		Member m = new Member();
 		MemberDAO dao = new MemberDAO();
 		ActionForward forward = new ActionForward();
-		
 		// image ¿ë
 		String realPath = "";
 		String savePath = "upload";
@@ -86,8 +85,10 @@ public class MemberUpdatePro implements MemberAction {
 			return null;
 		}		
 		
-		forward.setRedirect(true);
-		forward.setPath(request.getContextPath()+"/MemberList.me");
+		forward.setRedirect(false);
+		/*forward.setPath("/KsmartLibrary.me");*/
+		forward.setPath("/MemberDetail.me");
+		/*forward.setPath(request.getContextPath()+"/MemberDetail.me?mID="+m.getMember_id());*/
 		
 		return forward;
 	}
