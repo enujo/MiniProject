@@ -15,11 +15,13 @@ import book.db.Books;
 import book.db.BooksDAO;
 import book.db.Category;
 
-public class BooksAddPro implements BooksAction{
+public class BooksUpdatePro implements BooksAction {
 
+	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("euc-kr");
 		Books b = new Books();
-		BooksDAO bdao = new BooksDAO();
+		BooksDAO dao = new BooksDAO();
 		ActionForward forward = new ActionForward();
 		
 		// image 용
@@ -31,7 +33,9 @@ public class BooksAddPro implements BooksAction{
 		// 서버 상의 물리적인 업로드 경로를 얻어 옴
 		List savefiles = new ArrayList();
 		try {
+			System.out.println("-------updatePro-------------");
 			MultipartRequest multi = null;
+			
 			multi = new MultipartRequest(request, realPath, maxSize, "euc-kr", new DefaultFileRenamePolicy());
 			//
 			Enumeration files = multi.getFileNames();
@@ -52,13 +56,7 @@ public class BooksAddPro implements BooksAction{
 			for (int i = 0; i < savefiles.size(); i++) {
 				fl.append(savefiles.get(i));
 			}
-			b.setBooks_no(
-							multi.getParameter("books_cate")
-							+"."
-							+multi.getParameter("books_name").substring(0, 1)
-							+multi.getParameter("books_writer").substring(0, 1)
-							+multi.getParameter("books_publi").substring(0, 1)
-						);
+			b.setBooks_no(multi.getParameter("books_no"));
 			b.setBooks_name(multi.getParameter("books_name"));
 			b.setBooks_writer(multi.getParameter("books_writer"));
 			Category category = new Category();
@@ -66,23 +64,33 @@ public class BooksAddPro implements BooksAction{
 			b.setCategory(category);
 			b.setBooks_publi(multi.getParameter("books_publi"));
 			b.setBooks_img(fl.toString());
-
-			int result = bdao.bInsert(b);
+			System.out.println(b.getBooks_no());
+			System.out.println(b.getBooks_name());
+			System.out.println(b.getBooks_writer());
+			System.out.println(b.getCategory());
+			System.out.println(b.getBooks_publi());
+			System.out.println(b.getBooks_img());
+			
+			int result = dao.bUpdate(b);
 			if (result <= 0) {
 				response.setContentType("text/html;charset=euc-kr");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('등록실패')");
+				out.println("alert('업데이트실패')");
 				out.println("history.back()");
 				out.println("</script>");
 				return null;
 			}
-		} catch (Exception e) {
+			
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		forward.setRedirect(true);
 		forward.setPath(request.getContextPath() + "/BooksListPro.bo");
-			return forward;
+
+		return forward;
+	}
+	
 }
 
-}

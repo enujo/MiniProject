@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ include file="/module/top.jsp"%>
-<%@ include file="/module/side.jsp"%>
-<%
-	request.setCharacterEncoding("EUC-KR");
-%>
 
-<form action="<%=request.getContextPath()%>/BooksAddPro.bo" method="post" enctype="multipart/form-data">
+<c:import url="/module/top.jsp" />
+<c:import url="/module/side.jsp" /> 
+<form action="<c:url value='${request.getContextPath()}/BooksAddPro.bo'/>" method="post" enctype="multipart/form-data">
 	<div class="container">
 		<h2>BOOK ADD</h2>
 		<p></p>
@@ -40,4 +37,4 @@
 		</div>
 	</div>
 </form>
-<%@ include file="/module/bottom.jsp"%>
+<c:import url="/module/bottom.jsp" />

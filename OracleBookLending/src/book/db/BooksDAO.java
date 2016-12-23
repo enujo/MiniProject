@@ -83,25 +83,29 @@ public class BooksDAO {
 		//¸®½ºÆ®
 		public ArrayList<Books> bList(String select, String value) throws ClassNotFoundException, SQLException{
 			System.out.println("--BooksDAO - bList");
+			System.out.println(select +"<--select");
+			System.out.println(value +"<--value");
 			alb = new ArrayList<Books>();
 			conn=ds.getConnection();
 			String query = "SELECT * from books, category where books.books_cate = category.category_no";
 
 		    
 		    if (select==null & value==null){
+		    	System.out.println("1");
 		        pstmt = conn.prepareStatement(query);
 		        rs = pstmt.executeQuery();
 		        
 		    }else if ( select!=null&value.equals("")){
+		    	System.out.println("2");
 		        pstmt = conn.prepareStatement(query);
 		        rs = pstmt.executeQuery();
 		        
 		    }else if (select!=null&value!=null){
-		        pstmt = conn.prepareStatement(query+" and "+select+"=?");
-		        pstmt.setString(1, value);
+		    	System.out.println("3");
+		        pstmt = conn.prepareStatement(query+" and "+select+" like '%"+value+"%'");
 		        rs = pstmt.executeQuery();
 		    }
-
+		    System.out.println(query);
 			while(rs.next()){
 				b = new Books();
 				b.setBooks_no(rs.getString("books_no"));
@@ -136,13 +140,12 @@ public class BooksDAO {
 			System.out.println("--BooksDAO - bView");
 			b = new Books();
 			conn=ds.getConnection();
-			String query ="SELECT * from books, category where books.books_cate = category.category_no and books.books_no=?";
+			String query ="SELECT * from books, category where books.books_cate = category.category_no and books_no=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bookNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				
-				
+
 				b.setBooks_no(rs.getString("books_no"));
 				b.setBooks_name(rs.getString("books_name"));
 				b.setBooks_writer(rs.getString("books_writer"));
@@ -163,7 +166,42 @@ public class BooksDAO {
 				}
 			}
 			
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			
 			return b;
+		}
+		//update
+		public int bUpdate(Books b){
+			int result = 0;
+			System.out.println("bUpdate-----------------");
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(
+						"UPDATE books SET books_no=?, books_name=?, books_writer=?, books_img=?, books_publi=?, books_cate=? WHERE books_no=?");
+		
+				pstmt.setString(1, b.getCategory().getCategory_no()
+							+"."
+							+b.getBooks_name().substring(0, 1)
+							+b.getBooks_writer().substring(0, 1)
+							+b.getBooks_publi().substring(0, 1));
+				pstmt.setString(2, b.getBooks_name());
+				pstmt.setString(3, b.getBooks_writer());
+				pstmt.setString(4, b.getBooks_img());
+				pstmt.setString(5, b.getBooks_publi());
+				pstmt.setInt(6, b.getCategory().getCategory_no());
+				pstmt.setString(7, b.getBooks_no());
+		
+				result = pstmt.executeUpdate();
+				System.out.println(result + "<-- result");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+				if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			}
+
+			return result;
 		}
 }

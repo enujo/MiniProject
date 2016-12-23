@@ -16,6 +16,7 @@ import book.action.BooksAddPro;
 import book.action.BooksDeleteForm;
 import book.action.BooksListPro;
 import book.action.BooksUpdateForm;
+import book.action.BooksUpdatePro;
 import book.action.BooksViewPro;
 
 @WebServlet("/BooksController")
@@ -23,7 +24,6 @@ public class BooksController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("---BooksController - doProcess---");
-    	request.setCharacterEncoding("euc-kr");
 		String RequestURI=request.getRequestURI();
 		String contextPath=request.getContextPath();
 		String command=RequestURI.substring(contextPath.length());
@@ -68,6 +68,14 @@ public class BooksController extends HttpServlet {
 		}else if(command.equals("/BooksUpdateForm.bo")){
 			System.out.println("IF - BooksUpdateForm.bo");
 			action = new BooksUpdateForm();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BooksUpdatePro.bo")){
+			System.out.println("IF - BooksUpdatePro.bo");
+			action = new BooksUpdatePro();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
