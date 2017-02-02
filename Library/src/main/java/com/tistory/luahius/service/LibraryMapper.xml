@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.tistroy.luahius.service.LibraryMapper">
+	<insert id="insertLibraryMember" parameterType="com.tistory.luahius.domain.LibraryMember" >
+		INSERT INTO lib_member(
+			library_no,
+			libmember_name,
+			libmember_adress,
+			libmember_phone,
+			libmember_state
+		) VALUES (		
+			#{libraryNo},	
+			#{libmemberName},
+			#{libmemberAdress},
+			#{libmemberPhone},
+			#{libmemberState}
+		)
+	</insert>
+	<insert id="insertBooks" parameterType="com.tistory.luahius.domain.Book" >
+		INSERT INTO book(
+			library_no,
+			bookcategory_no,
+			book_name,
+			book_writer,
+			book_pulisher,
+			book_state
+		) VALUES (
+			#{libraryNo},
+			#{bookcategoryNo},
+			#{bookName},
+			#{bookWriter},
+			#{bookPulisher},
+			#{bookState}
+		)	
+	</insert>
+
+</mapper>
