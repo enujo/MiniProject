@@ -33,20 +33,20 @@ body, html {
 	<div class="w3-top">
 		<div class="w3-row w3-padding w3-black">
 			<div class="w3-col s3">
-				<a href="#" class="w3-btn-block w3-hover-white">HOME</a>
+				<a href="<c:url value='/' />" class="w3-btn-block w3-hover-white">HOME</a>
 			</div>
 			<div class="w3-col s3 w3-dropdown-hover">
 				<a href="#about" class="w3-btn-block w3-hover-white">회원관리</a>
 				<div class="w3-dropdown-content w3-white w3-card-4 ">
-					<a href="#" class="w3-btn-block w3-hover-white">회원등록</a>
+					<a href="<c:url value='/joinmember' />" class="w3-btn-block w3-hover-white">회원등록</a>
 					<a href="#" class="w3-btn-block w3-hover-white">회원목록</a>
 				</div>
 			</div>
 			<div class="w3-col s3 w3-dropdown-hover">
 				<a href="#menu" class="w3-btn-block w3-hover-white">도서관리</a>
 				<div class="w3-dropdown-content w3-white w3-card-4 ">
-					<a href="#" class="w3-btn-block w3-hover-white">도서등록</a>
-					<a href="#" class="w3-btn-block w3-hover-white">도서목록</a>
+					<a href="<c:url value='/addbooks' />" class="w3-btn-block w3-hover-white">도서등록</a>
+					<a href="<c:url value='booklist' />" class="w3-btn-block w3-hover-white">도서목록</a>
 				</div>
 			</div>
 
@@ -73,7 +73,7 @@ body, html {
 					</a> 
 					<!-- <img src="/w3images/avatar_g2.jpg" style="width: 45%;" class="w3-round"> --><br> <br>
 					<h4 class="w3-padding-0">
-						<b><a href="#">Smart Library</a></b>
+						<b><a href="<c:url value='/' />">Smart Library</a></b>
 					</h4>
 					<p class="w3-text-grey"></p>
 				</div>
@@ -86,7 +86,7 @@ body, html {
 					</button>
 					<div id="Demo1" class="w3-accordion-content">
 						<ul class="w3-ul">
-							<li><a href="#">회원등록</a></li>
+							<li><a href="<c:url value='/joinmember' />">회원등록</a></li>
 							<li><a href="#">회원목록</a></li>
 						</ul>
 					</div>
@@ -98,8 +98,8 @@ body, html {
 					</button>
 					<div id="Demo2" class="w3-accordion-content">
 						<ul class="w3-ul">
-							<li><a href="#">도서등록</a></li>
-							<li><a href="#">도서목록</a></li>
+							<li><a href="<c:url value='/addbooks' />">도서등록</a></li>
+							<li><a href="<c:url value='booklist' />">도서목록</a></li>
 						</ul>
 					</div>
 				</div>

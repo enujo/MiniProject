@@ -36,6 +36,7 @@
 		<property name="mapperLocations"> 
 			<list>
 				<value>classpath:/com/tistory/luahius/service/LibraryMapper.xml</value>
+				
 			</list> 
 	 	</property> 
 	 </bean> 

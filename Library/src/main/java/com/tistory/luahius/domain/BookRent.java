@@ -6,6 +6,14 @@ public class BookRent {
 	private int bookNo;
 	private String brentStart;
 	private String brentEnd;
+	private Pay pay;
+	
+	public Pay getPay() {
+		return pay;
+	}
+	public void setPay(Pay pay) {
+		this.pay = pay;
+	}
 	public int getBrentNo() {
 		return brentNo;
 	}
@@ -39,7 +47,7 @@ public class BookRent {
 	@Override
 	public String toString() {
 		return "BookRent [brentNo=" + brentNo + ", libmemberNo=" + libmemberNo + ", bookNo=" + bookNo + ", brentStart="
-				+ brentStart + ", brentEnd=" + brentEnd + "]";
+				+ brentStart + ", brentEnd=" + brentEnd + ", pay=" + pay + "]";
 	}
 	
 	

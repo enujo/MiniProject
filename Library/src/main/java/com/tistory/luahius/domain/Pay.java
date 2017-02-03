@@ -1,10 +1,11 @@
 package com.tistory.luahius.domain;
 
-public class pay {
+public class Pay {
 	private int payNo;
 	private int libmemberNo;
 	private int brentNo;
 	private int payTotal;
+	
 	public int getPayNo() {
 		return payNo;
 	}

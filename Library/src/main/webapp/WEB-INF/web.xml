@@ -27,4 +27,5 @@
 			<include-coda>/resources/base/footer.jsp</include-coda>
 		</jsp-property-group>
 	</jsp-config>
+	
 </web-app>

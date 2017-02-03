@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.tistroy.luahius.service.LibraryMapper">
+	
+	<!-- 회원 정보를 입력 받아 LibraryMember 타입으로 받아 입력 -->
 	<insert id="insertLibraryMember" parameterType="com.tistory.luahius.domain.LibraryMember" >
 		INSERT INTO lib_member(
 			library_no,
@@ -16,6 +18,8 @@
 			#{libmemberState}
 		)
 	</insert>
+	
+	<!-- 도서 정보를 입력받은 정보를 Book 타입으로 받아 입력 -->
 	<insert id="insertBooks" parameterType="com.tistory.luahius.domain.Book" >
 		INSERT INTO book(
 			library_no,
@@ -26,12 +30,105 @@
 			book_state
 		) VALUES (
 			#{libraryNo},
-			#{bookcategoryNo},
+			#{bookcategory.bookcategoryNo},
 			#{bookName},
 			#{bookWriter},
 			#{bookPulisher},
 			#{bookState}
 		)	
 	</insert>
+	
+	<!-- Book 타입으로 결과를 리턴
+	<select id="AllBookList" resultType="com.tistory.luahius.domain.Book">
+		SELECT
+			book_no as bookNo,
+			disbook_no as disbookNo,
+			library_no as libraryNo,
+			bookcategory_no as bookcategoryNo,
+			book_name as bookName, 
+			book_writer as bookWriter, 
+			book_pulisher as bookPulisher, 
+			book_firstrent as bookFirstrent, 
+			book_totalrent as bookTotalrent, 
+			book_totalday as bookTotalday, 
+			book_state as bookState
+		FROM 
+			book
+	</select>
+	 -->
+	
+	<!-- Book과 cate를 한꺼번에 불러온당 타입으로 결과를 리턴 -->
+	<select id="AllBookList" resultType="com.tistory.luahius.domain.Book">
+		SELECT
+			book.book_no as bookNo, 
+			book.disbook_no as disbookNo, 
+			book.library_no as libraryNo, 
+			book.book_name as bookName, 
+			book.book_writer as bookWriter, 
+			book.book_pulisher as bookPulisher, 
+			book.book_firstrent as bookFirstrent,
+			book.book_totalrent as bookTotalrent, 
+			book.book_totalday as bookTotalday, 
+			book.book_state as bookState, 
+			book_category.bookcategory_name as "bookcategory.bookcategoryName"
+		FROM 
+			book, book_category
+		Where 
+			book.bookcategory_no = book_category.bookcategory_no
+		ORDER BY book.book_no DESC;
+	</select>
+	
+	
+	<!-- 도서 장르 불러오기 -->
+	<select id="getBookCate" resultType="com.tistory.luahius.domain.BookCategory">
+		SELECT
+			bookcategory_no as bookcategoryNo, 
+			bookcategory_name as bookcategoryName
+		FROM book_category
+	</select>
+	
+	<!-- 한명의 회원 정보 불러오기 -->
+	<select id="getMemberDetail" parameterType="int" resultType="com.tistory.luahius.domain.LibraryMember">
+		SELECT
+			libmember_no as libmemberNo, 
+			library_no as libraryNo, 
+			libmember_name as libmemberName, 
+			libmember_adress as libmemberAdress, 
+			libmember_phone as libmemberPhone, 
+			libmember_state as libmemberState
+		FROM 
+			lib_member
+		WHERE
+			libmember_no = #{libmemberNo}
+	</select>
+	
+	<!-- 한권의 도서 정보 불러오기 -->
+	<select id="getBookDetail" parameterType="int" resultType="com.tistory.luahius.domain.Book">
+		SELECT
+			book_no as bookNo, 
+			disbook_no as disbookNo , 
+			library_no as libraryNo , 
+			bookcategory_no as bookcategory , 
+			book_totalrent as bookTotalrent, 
+			book_totalday as bookTotalday, 
+			book_state as bookTotalday
+		FROM 
+			book
+		WHERE
+			book_no = #{bookNo}
+	</select>
+	
+	<insert id="rentStartBook" parameterType="com.tistory.luahius.domain.BookRent">
+		INSERT INTO book_rent(
+			libmember_no, 
+			book_no, 
+			brent_start
+		) VALUES (
+			#{libmemberNo},
+			#{bookNo}, 
+			NOW()
+		)
+	</insert>
+	
 
 </mapper>

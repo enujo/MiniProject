@@ -6,7 +6,7 @@ public class LibraryMember {
 	private String libmemberName;
 	private String libmemberAdress;
 	private int libmemberPhone;
-	private int libmemberState;
+	private String libmemberState;
 	
 	public int getLibmemberNo() {
 		return libmemberNo;
@@ -38,10 +38,10 @@ public class LibraryMember {
 	public void setLibmemberPhone(int libmemberPhone) {
 		this.libmemberPhone = libmemberPhone;
 	}
-	public int getLibmemberState() {
+	public String getLibmemberState() {
 		return libmemberState;
 	}
-	public void setLibmemberState(int libmemberState) {
+	public void setLibmemberState(String libmemberState) {
 		this.libmemberState = libmemberState;
 	}
 	@Override
