@@ -84,7 +84,7 @@ public class LibraryController {
 	public String rentBooks(Model model){
 		logger.debug("rentBooks GET start . . . ");
 		int libmemberNo = 1;
-		int bookNo = 10;
+		int bookNo = 1;
 		/* 
 		 * , @RequestParam(value="1") int libmemberNo, @RequestParam(value="4") int bookNo
 		 * 바코드나 칩으로 어느 기계에 정보를 주었다고 가정하고 그 정보와 맞는 회원 정보, 도서 정보를 불러 화면에 보여줌 
@@ -99,7 +99,7 @@ public class LibraryController {
 	}
 	
 	/* 도서 대여 등록 */
-	@RequestMapping(value = "/rentbooksfinish", method=RequestMethod.POST)
+	@RequestMapping(value = "/rentbooks", method=RequestMethod.POST)
 	public String rentBookFinish(BookRent bookrent){
 		logger.debug("rentBookFinish POST start . . . ");
 		service.rentBookFinish(bookrent);
