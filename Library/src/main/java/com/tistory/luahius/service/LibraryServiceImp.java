@@ -74,12 +74,19 @@ public class LibraryServiceImp implements LibraryService {
 		return returnBook;
 	}
 	
-	/*도서 대여 등록 완료*/
+	/*도서 대여 등록*/
 	@Override
 	public void rentBookFinish(BookRent bookrent) {
 		logger.debug("rentBookFinish BookRent의 값 : {}",bookrent);
 		libraryDao.rentStartBook(bookrent);
 		
+	}
+	/*빌려준 도서 정보를 가져옴*/
+	@Override
+	public BookRent getBookRentDetail(int bookNo) {
+		logger.debug("getBookRentDetail bookNo의 값 : {}",bookNo);
+		libraryDao.getBookRentDetail(bookNo);
+		return null;
 	}
 
 	

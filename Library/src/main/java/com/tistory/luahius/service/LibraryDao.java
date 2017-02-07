@@ -23,5 +23,7 @@ public interface LibraryDao {
 
 	public int rentStartBook(BookRent bookrent);
 
+	public BookRent getBookRentDetail(int bookNo);
+
 	
 }

@@ -111,24 +111,16 @@
 			bookcategory_no as bookcategory , 
 			book_totalrent as bookTotalrent, 
 			book_totalday as bookTotalday, 
-			book_state as bookTotalday
+			book_state as bookState
 		FROM 
 			book
 		WHERE
 			book_no = #{bookNo}
 	</select>
 	
-	<insert id="rentStartBook" parameterType="com.tistory.luahius.domain.BookRent">
-		INSERT INTO book_rent(
-			libmember_no, 
-			book_no, 
-			brent_start
-		) VALUES (
-			#{libmemberNo},
-			#{bookNo}, 
-			NOW()
-		)
+	<insert id="rentStartBook" parameterType="com.tistory.luahius.domain.BookRent" statementType="CALLABLE">
+		{
+		call insertRent(#{libmember.libmemberNo}, #{book.bookNo}, #{pay.payTotal}, #{book.bookState})	
+		}
 	</insert>
-	
-
 </mapper>

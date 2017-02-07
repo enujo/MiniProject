@@ -25,5 +25,7 @@ public interface LibraryService {
 
 	public void rentBookFinish(BookRent bookrent);
 
+	public BookRent getBookRentDetail(int bookNo);
+
 	
 }

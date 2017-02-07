@@ -2,7 +2,7 @@ package com.tistory.luahius.domain;
 
 public class dicardBook {
 	private int disbookNo;
-	private int bookNo;
+	private Book book;
 	private String disbookRegister;
 	private String disbookDueday;
 	public int getDisbookNo() {
@@ -11,11 +11,11 @@ public class dicardBook {
 	public void setDisbookNo(int disbookNo) {
 		this.disbookNo = disbookNo;
 	}
-	public int getBookNo() {
-		return bookNo;
+	public Book getBook() {
+		return book;
 	}
-	public void setBookNo(int bookNo) {
-		this.bookNo = bookNo;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public String getDisbookRegister() {
 		return disbookRegister;
@@ -31,8 +31,8 @@ public class dicardBook {
 	}
 	@Override
 	public String toString() {
-		return "dicardBook [disbookNo=" + disbookNo + ", bookNo=" + bookNo + ", disbookRegister=" + disbookRegister
+		return "dicardBook [disbookNo=" + disbookNo + ", book=" + book + ", disbookRegister=" + disbookRegister
 				+ ", disbookDueday=" + disbookDueday + "]";
 	}
-	
+		
 }

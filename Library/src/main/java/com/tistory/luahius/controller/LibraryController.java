@@ -107,6 +107,25 @@ public class LibraryController {
 		return "rentBooks";
 	}
 	
+	@RequestMapping(value = "/returnBooks")
+	public String retunBooks(Model model){
+		logger.debug("retunBooks  start . . . ");
+/*		반납하는 도서의 번호가 1이라고 가정을 하고*/
+		
+		int bookNo = 1;
+		BookRent bookrent = service.getBookRentDetail(bookNo);
+		
+		
+		
+
+		
+		return "returnBooks";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

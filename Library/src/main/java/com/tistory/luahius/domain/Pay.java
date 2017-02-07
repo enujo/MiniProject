@@ -2,27 +2,26 @@ package com.tistory.luahius.domain;
 
 public class Pay {
 	private int payNo;
-	private int libmemberNo;
-	private int brentNo;
+	private LibraryMember libmember;
+	private BookRent bookRent;
 	private int payTotal;
-	
 	public int getPayNo() {
 		return payNo;
 	}
 	public void setPayNo(int payNo) {
 		this.payNo = payNo;
 	}
-	public int getLibmemberNo() {
-		return libmemberNo;
+	public LibraryMember getLibmember() {
+		return libmember;
 	}
-	public void setLibmemberNo(int libmemberNo) {
-		this.libmemberNo = libmemberNo;
+	public void setLibmember(LibraryMember libmember) {
+		this.libmember = libmember;
 	}
-	public int getBrentNo() {
-		return brentNo;
+	public BookRent getBookRent() {
+		return bookRent;
 	}
-	public void setBrentNo(int brentNo) {
-		this.brentNo = brentNo;
+	public void setBookRent(BookRent bookRent) {
+		this.bookRent = bookRent;
 	}
 	public int getPayTotal() {
 		return payTotal;
@@ -32,9 +31,10 @@ public class Pay {
 	}
 	@Override
 	public String toString() {
-		return "pay [payNo=" + payNo + ", libmemberNo=" + libmemberNo + ", brentNo=" + brentNo + ", payTotal="
-				+ payTotal + "]";
+		return "Pay [payNo=" + payNo + ", libmember=" + libmember + ", bookRent=" + bookRent + ", payTotal=" + payTotal
+				+ "]";
 	}
 	
 	
+
 }

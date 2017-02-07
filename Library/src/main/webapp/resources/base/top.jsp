@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>SMART LIBRARY</title>
 <style>
 body, html {
 	height: 100%;
@@ -47,12 +48,11 @@ body, html {
 					<a href="<c:url value='booklist' />" class="w3-btn-block w3-hover-white">도서목록</a>
 				</div>
 			</div>
-
 			<div class="w3-col s3 w3-dropdown-hover">
 				<a href="#where" class="w3-btn-block w3-hover-white">대여/반납</a>
 				<div class="w3-dropdown-content w3-white w3-card-4 ">
-					<a href="/rentbooks" class="w3-btn-block w3-hover-white">대여신청</a>
-					<a href="#" class="w3-btn-block w3-hover-white">반납신청</a>
+					<a href="<c:url value='/rentbooks' />" class="w3-btn-block w3-hover-white">대여신청</a>
+					<a href="<c:url value='returnBooks' />" class="w3-btn-block w3-hover-white">반납신청</a>
 				</div>
 			</div>
 		</div>
@@ -106,11 +106,13 @@ body, html {
 						</button>
 						<div id="Demo3" class="w3-accordion-content">
 							<ul class="w3-ul">
-								<li><a href="/rentbooks">대여신청</a></li>
-								<li><a href="#">반납신청</a></li>
+								<li><a href="<c:url value='/rentbooks' />">대여신청</a></li>
+								<li><a href="<c:url value='/returnBooks' />">반납신청</a></li>
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</div>
+		</div>
+	</div>
 	

@@ -57,12 +57,23 @@ public class LibraryDaoImp implements LibraryDao{
 
 	@Override	/*한권의 도서 정보를 가져옴*/
 	public Book getBookDetail(int bookNo) {
+		logger.debug("getBookDetail bookNo는 {} 이다 ",bookNo);
 		return sqlSession.selectOne(NS+"getBookDetail", bookNo);
 	}
 
 	@Override	/*도서 대여 등록*/
 	public int rentStartBook(BookRent bookrent) {
+		logger.debug("rentStartBook ");
 		return sqlSession.insert(NS+"rentStartBook", bookrent);
+	}
+
+	@Override	/*빌려준 도서 정보를 가져옴*/
+	public BookRent getBookRentDetail(int bookNo) {
+		logger.debug("getBookRentDetail bookNo는 {} 이다 ",bookNo);
+		
+		return sqlSession.selectOne(NS+"",bookNo);
+
+		
 	}
 
 }

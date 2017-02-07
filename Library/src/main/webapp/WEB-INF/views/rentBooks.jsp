@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SMART LIBRARY</title>
+
 </head>
 <body>
 	<div class="w3-container">
@@ -14,17 +14,19 @@
 				</h5>
 				
 				<form action="<c:url value='/rentbooks'/>" method="post">
+					<!-- 대여 등록시 도서 상태를 대여 불가능으로 변경 -->
+					<input type="hidden" value="itsNo" name="book.bookState" />
 					<p>
 						회원 일련번호
-						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnMember.libmemberNo }" name="libmemberNo" readonly="readonly">
+						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnMember.libmemberNo }" name="libmember.libmemberNo" readonly="readonly">
 					</p>
 					<p>
 						회원 등급
-						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnMember.libmemberState }" name="" readonly="readonly">
+						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnMember.libmemberState }" name="#" readonly="readonly">
 					</p>
 					<p>
 						도서 일련번호
-						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnBook.bookNo }"  name="bookNo" readonly="readonly">
+						<input class="w3-input w3-padding-16 w3-border" type="text" value="${returnBook.bookNo }"  name="book.bookNo" readonly="readonly">
 					</p>
 					<p>
 						결제 금액	<!-- placeholder -->
